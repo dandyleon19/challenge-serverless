@@ -2,6 +2,7 @@ import type { AWS } from '@serverless/typescript';
 
 import { getPeople, createPerson, getPerson, updatePerson } from "@functions/people";
 import { getSwapiPeople, getSwapiPerson } from "@functions/swapi/people";
+import { getSwapiVehicles, getSwapiVehicle } from '@functions/swapi/vehicles'; 
 
 const serverlessConfiguration: AWS = {
   service: 'people',
@@ -39,7 +40,7 @@ const serverlessConfiguration: AWS = {
     },
   },
   // import the function via paths
-  functions: { getPeople, createPerson, getPerson, updatePerson, getSwapiPeople, getSwapiPerson },
+  functions: { getPeople, createPerson, getPerson, updatePerson, getSwapiPeople, getSwapiPerson, getSwapiVehicles, getSwapiVehicle },
   package: { individually: true },
   custom:{
     esbuild: {

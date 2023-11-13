@@ -1,5 +1,6 @@
 import { DocumentClient } from "aws-sdk/clients/dynamodb";
 import { Person, Persona } from "../models/Person";
+import { Vehicle, Vehiculo } from "src/models/Vehicle";
 
 export const translatePersonObject = (input: Person): Persona => {
     return {
@@ -17,6 +18,27 @@ export const translatePersonObject = (input: Person): Persona => {
         naves_estelares: input.starships,
         url: input.url,
         creado: input.created,
+        editado: input.edited,
+    };
+}
+
+export const translateVehicleObject = (input: Vehicle): Vehiculo => {
+    return {
+        nombre: input.name,
+        modelo: input.model,
+        fabricante: input.manufacturer, 
+        costo_en_créditos: input.cost_in_credits,
+        longitud: input.length,
+        velocidad_atmosférica_máxima: input.max_atmosphering_speed, 
+        multitud: input.crew, 
+        pasajeros: input.passengers,
+        capacidad_de_carga: input.cargo_capacity,
+        consumibles: input.consumables,
+        clase_vehículo: input.vehicle_class, 
+        pilotos: input.pilots,
+        peliculas: input.films,
+        url: input.url,
+        creado: input.created, 
         editado: input.edited,
     };
 }

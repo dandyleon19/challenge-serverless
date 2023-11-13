@@ -55,6 +55,16 @@ To get a person from swapi, run the command:
 - `npx sls invoke local -f getSwapiPerson -p tests/mocks/get-swapi-person.json` if you're using NPM
 - `yarn sls invoke local -f getSwapiPerson -p tests/mocks/get-swapi-person.json` if you're using Yarn
 
+To get all vehicles from swapi, run the command:
+
+- `npx sls invoke local -f getSwapiVehicles -p tests/mocks/index-swapi-vehicles.json` if you're using NPM
+- `yarn sls invoke local -f getSwapiVehicles -p tests/mocks/index-swapi-vehicles.json` if you're using Yarn
+
+To get a vehicle from swapi, run the command:
+
+- `npx sls invoke local -f getSwapiVehicle -p tests/mocks/get-swapi-vehicle.json` if you're using NPM
+- `yarn sls invoke local -f getSwapiVehicle -p tests/mocks/get-swapi-vehicle.json` if you're using Yarn
+
 ### Test in your deployed API
 
 You can test in Postman with the following endpoints:
@@ -116,6 +126,16 @@ You can test in Postman with the following endpoints:
 # Get person from SWAPI:
 
 /GET https://yourApiEdnpoint/dev/swapi/people/{id}
+```
+```
+# Get vehicles from SWAPI:
+
+/GET https://yourApiEdnpoint/dev/swapi/vehicles
+```
+```
+# Get vehicle from SWAPI:
+
+/GET https://yourApiEdnpoint/dev/swapi/vehicles/{id}
 ```
 
 ### Swagger Test
@@ -196,7 +216,16 @@ You can test in Postman with the following endpoints:
 
 /GET http://localhost:3000/dev/swapi/people/{id}
 ```
+```
+# Get all vehicles from SWAPI:
 
+/GET http://localhost:3000/dev/swapi/vehicles
+```
+```
+# Get vehicle from SWAPI:
+
+/GET http://localhost:3000/dev/swapi/vehicles/{id}
+```
 ## Unit Tests
 
 Run the command: 
