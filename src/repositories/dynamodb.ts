@@ -3,7 +3,7 @@ import { dynamoDBClient } from '../models';
 import { Persona } from "../models/Person";
 import { buildUpdateItemInputParams } from "../helpers";
 
-const tableName: string = "Person"
+const tableName: string = "PersonTable"
 const docClient: DocumentClient = dynamoDBClient()
 
 export const getPeople = async (): Promise<Persona[]> => {

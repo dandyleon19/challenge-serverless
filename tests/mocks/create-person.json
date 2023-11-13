@@ -1,0 +1,6 @@
+{
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": "{\"nombre\": \"Ronaldo\",\"altura\": \"188\",\"genero\": \"male\",\"color_cabello\": \"blond\",\"color_piel\": \"fair\",\"color_ojos\": \"blue\",\"cumpleaños\": \"41.9BBY\",\"mundo_natal\": \"https://swapi.py4e.com/api/planets/1/\",\"url\": \"https://swapi.py4e.com/api/people/11/\"}"
+}

@@ -6,7 +6,7 @@ import { getSwapiPeople, getSwapiPerson } from "@functions/swapi/people";
 const serverlessConfiguration: AWS = {
   service: 'people',
   frameworkVersion: '3',
-  plugins: ['serverless-esbuild'],
+  plugins: ['serverless-esbuild', 'serverless-offline', 'serverless-dynamodb', 'serverless-auto-swagger'],
   provider: {
     name: 'aws',
     runtime: 'nodejs14.x',
@@ -33,7 +33,7 @@ const serverlessConfiguration: AWS = {
             "dynamodb:UpdateItem",
             "dynamodb:DeleteItem",
           ],
-          Resource: "*",
+          Resource: "arn:aws:dynamodb:*:*:table/PersonTable",
         }],
       },
     },
@@ -41,7 +41,7 @@ const serverlessConfiguration: AWS = {
   // import the function via paths
   functions: { getPeople, createPerson, getPerson, updatePerson, getSwapiPeople, getSwapiPerson },
   package: { individually: true },
-  custom: {
+  custom:{
     esbuild: {
       bundle: true,
       minify: false,
@@ -52,13 +52,31 @@ const serverlessConfiguration: AWS = {
       platform: 'node',
       concurrency: 10,
     },
+    dynamodb:{
+      start:{
+        port: 5000,
+        inMemory: true,
+        migrate: true,
+      },
+      stages: "dev"
+    },
+    autoswagger: {
+      title: 'Challenge Serverless',
+      apiType: 'http',
+      generateSwaggerOnDeploy: true,
+      swaggerPath: 'challenge-serverless',
+      typefiles: [],
+      schemes: ['https'],
+      excludeStages: ['production'],
+      basePath: "/${opt:stage, 'dev'}",
+    },
   },
   resources: {
     Resources: {
-      TodosTable: {
+      PersonTable: {
         Type: "AWS::DynamoDB::Table",
         Properties: {
-          TableName: "Person",
+          TableName: "PersonTable",
           AttributeDefinitions: [{
             AttributeName: "id",
             AttributeType: "S",
@@ -71,7 +89,6 @@ const serverlessConfiguration: AWS = {
             ReadCapacityUnits: 1,
             WriteCapacityUnits: 1
           },
-
         }
       }
     }
